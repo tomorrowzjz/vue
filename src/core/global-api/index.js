@@ -28,6 +28,12 @@ export function initGlobalAPI (Vue: GlobalAPI) {
       )
     }
   }
+  //在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象。
+  /*
+   * @param: obj:需要定义属性的对象; vue
+   *         prop:需要定义或修改的属性；'config'
+   *         descriptor:将被定义或修改属性的描述符 configDef
+   */
   Object.defineProperty(Vue, 'config', configDef)
 
   // exposed util methods.
@@ -45,6 +51,7 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   Vue.nextTick = nextTick
 
   Vue.options = Object.create(null)
+    // 'component','directive','filter'
   ASSET_TYPES.forEach(type => {
     Vue.options[type + 's'] = Object.create(null)
   })

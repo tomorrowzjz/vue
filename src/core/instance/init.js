@@ -13,9 +13,10 @@ import { extend, mergeOptions, formatComponentName } from '../util/index'
 let uid = 0
 
 export function initMixin (Vue: Class<Component>) {
+
   Vue.prototype._init = function (options?: Object) {
     const vm: Component = this
-    // a uid
+    // a uid  vm实例唯一表识
     vm._uid = uid++
 
     let startTag, endTag
@@ -52,6 +53,7 @@ export function initMixin (Vue: Class<Component>) {
     initLifecycle(vm)
     initEvents(vm)
     initRender(vm)
+    //执行用户自定义的钩子函数，并将钩子中this指向指为当前组件实例。
     callHook(vm, 'beforeCreate')
     initInjections(vm) // resolve injections before data/props
     initState(vm)

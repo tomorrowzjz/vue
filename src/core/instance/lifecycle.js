@@ -198,7 +198,9 @@ export function mountComponent (
 
   // manually mounted instance, call mounted on self
   // mounted is called for render-created child components in its inserted hook
+    //vm.$vnode 表示 Vue 实例的父虚拟 Node，所以它为 Null 则表示当前是根 Vue 的实例。
   if (vm.$vnode == null) {
+    //表示这个实例已经挂载了，
     vm._isMounted = true
     callHook(vm, 'mounted')
   }
@@ -311,11 +313,12 @@ export function deactivateChildComponent (vm: Component, direct?: boolean) {
     callHook(vm, 'deactivated')
   }
 }
-
+//执行用户自定义的钩子函数，并将钩子中this指向指为当前组件实例。
 export function callHook (vm: Component, hook: string) {
   // #7573 disable dep collection when invoking lifecycle hooks
   pushTarget()
   const handlers = vm.$options[hook]
+    //查找在对应的vue实例上有没有对应的钩子函数
   if (handlers) {
     for (let i = 0, j = handlers.length; i < j; i++) {
       try {

@@ -368,13 +368,14 @@ export function mergeOptions (
   vm?: Component
 ): Object {
   if (process.env.NODE_ENV !== 'production') {
+    //开发环境下判断组件名是否合法
     checkComponents(child)
   }
 
   if (typeof child === 'function') {
     child = child.options
   }
-
+    // 格式化child的props
   normalizeProps(child, vm)
   normalizeInject(child, vm)
   normalizeDirectives(child)

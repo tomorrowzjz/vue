@@ -122,6 +122,7 @@ function initData (vm: Component) {
       vm
     )
   }
+  //获取到vm上的data的key和prop和methods上的属性相比较，确保在data,key和methods上没有重复的属性
   // proxy data on instance
   const keys = Object.keys(data)
   const props = vm.$options.props
@@ -144,6 +145,7 @@ function initData (vm: Component) {
         vm
       )
     } else if (!isReserved(key)) {
+      //将options上的data数据代理到this上
       proxy(vm, `_data`, key)
     }
   }

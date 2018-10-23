@@ -10,6 +10,7 @@ import {
 import { updateListeners } from '../vdom/helpers/index'
 
 export function initEvents (vm: Component) {
+  //创建一个具有指定原型且可选择性地包含指定属性的对象。
   vm._events = Object.create(null)
   vm._hasHookEvent = false
   // init parent attached events

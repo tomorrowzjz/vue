@@ -14,13 +14,17 @@ const idToTemplate = cached(id => {
   return el && el.innerHTML
 })
 
+//缓存了原型上的 $mount 方法
 const mount = Vue.prototype.$mount
+//重写$mount方法
 Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean
 ): Component {
+  //获取le对应的dom对象
   el = el && query(el)
 
+    //Vue 不能挂载在 body、html 这样的根节点上
   /* istanbul ignore if */
   if (el === document.body || el === document.documentElement) {
     process.env.NODE_ENV !== 'production' && warn(

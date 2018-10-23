@@ -13,7 +13,7 @@ function Vue (options) {
   }
   this._init(options)
 }
-
+//给构造函数原型添加_init()方法
 initMixin(Vue)
 stateMixin(Vue)
 eventsMixin(Vue)
